@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../_shared/Widgets/components.dart';
+import '../../_shared/Widgets/components.dart';
 
 class Introduction2 extends StatelessWidget {
   const Introduction2({super.key});

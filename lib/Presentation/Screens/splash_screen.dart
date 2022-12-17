@@ -13,10 +13,10 @@ class SplashScreen extends StatelessWidget {
       listenWhen: (previous, current) => (current is! Loading),
       listener: (context, state) async {
         final prefs = await SharedPreferences.getInstance();
-        if (prefs.getBool("first_time")) {
+        if (prefs.getBool("first_time") ?? true) {
           context.go("/introduction1");
         } else if (state is Loaded) {
-          context.go("/videos");
+          context.go("/navigator");
         } else {
           startBloc.add(LoadModel());
         }

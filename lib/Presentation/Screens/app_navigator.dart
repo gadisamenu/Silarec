@@ -1,38 +1,36 @@
-// import 'package:flutter/cupertino.dart';
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:silarec/Presentation/Screens/Browse/browse.dart';
+import 'package:silarec/Presentation/Screens/Live%20Recording/live_recording.dart';
+import 'package:silarec/Presentation/Screens/Settings/settings.dart';
+import 'package:silarec/Presentation/Screens/Videos/videos.dart';
 
-class AppBottomNavigator extends StatefulWidget {
+class AppNavigator extends StatefulWidget {
   @override
-  State<AppBottomNavigator> createState() => _AppBottomNavigatorState();
+  State<AppNavigator> createState() => _AppNavigator();
 }
 
-class _AppBottomNavigatorState extends State<AppBottomNavigator> {
-  List paths = <String>["/videos", "/browse", "/liverecording", "/settings"];
-  static int _current_index = 0;
+class _AppNavigator extends State<AppNavigator> {
+  List bodys = <Widget>[Videos(), Browse(), LiveRecording(), Settings()];
+
+  int _current_index = 0;
 
   void _onItemTapped(int index) {
     setState(() {
       _current_index = index;
-      context.go(paths[index]);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // print(current_index);
-    // print("__________________________");
-    return BottomNavigationBar(
+    return Scaffold(
+      body: bodys[_current_index],
+      bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
         selectedItemColor: Theme.of(context).colorScheme.secondary,
         unselectedItemColor: Theme.of(context).iconTheme.color,
-        elevation: 500,
+        // elevation: 500,
         currentIndex: _current_index,
-        // elevation: 0,
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
@@ -52,15 +50,7 @@ class _AppBottomNavigatorState extends State<AppBottomNavigator> {
             label: "Settings",
           )
         ],
-        type: BottomNavigationBarType.fixed);
+      ),
+    );
   }
 }
-
-// class SingletonTest {
-//   SingletonTest._();
-//   static Widget navBar = AppBottomNavigator();
-
-//   static final instance = SingletonTest._();
-// }
-
-final navBar = AppBottomNavigator();
