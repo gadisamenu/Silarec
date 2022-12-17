@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../Application/Theme/theme_bloc.dart';
-import '../../_shared/Widgets/button_navigator_bar.dart';
+import '../../_shared/Widgets/buttom_navigator_bar.dart';
 
 class Settings extends StatelessWidget {
   @override

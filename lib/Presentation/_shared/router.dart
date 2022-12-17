@@ -5,10 +5,12 @@ import 'package:silarec/Presentation/Screens/Live%20Recording/live_recording.dar
 import 'package:silarec/Presentation/Screens/Settings/settings.dart';
 import 'package:silarec/Presentation/Screens/Videos/videos.dart';
 import 'package:silarec/Presentation/Screens/splash_screen.dart';
+import '../Screens/introduction_screen_1.dart';
+import '../Screens/introduction_screen_2.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: "/",
+    initialLocation: "/introduction1",
     routes: <GoRoute>[
       GoRoute(
         path: '/settings',
@@ -30,6 +32,14 @@ class AppRouter {
         path: "/liverecording",
         builder: (BuildContext context, GoRouterState state) => LiveRecording(),
       ),
+      GoRoute(
+        path: "/introduction1",
+        builder: (BuildContext context, GoRouterState state) => Introduction1(),
+      ),
+      GoRoute(
+        path: "/introduction2",
+        builder: (BuildContext context, GoRouterState state) => Introduction2(),
+      )
     ],
   );
 }

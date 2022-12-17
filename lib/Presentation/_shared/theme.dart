@@ -10,11 +10,15 @@ class AppTheme {
       onPrimary: Color.fromARGB(255, 39, 39, 58),
     ),
     textTheme: const TextTheme(
-        headlineLarge: TextStyle(fontSize: 35, color: Colors.white),
-        headlineMedium: TextStyle(fontSize: 18, color: Colors.white),
-        bodyMedium: TextStyle(fontSize: 11, color: Color(0xFF8B8B94)),
-        bodyLarge: TextStyle(fontSize: 26, color: Colors.white),
-        bodySmall: TextStyle(fontSize: 16, color: Colors.white)),
+      headlineLarge: TextStyle(fontSize: 35, color: Colors.white),
+      headlineMedium: TextStyle(fontSize: 18, color: Colors.white),
+      bodyMedium: TextStyle(fontSize: 16, color: Colors.white),
+      bodyLarge: TextStyle(
+          fontSize: 26, color: Colors.white, fontWeight: FontWeight.w600),
+      bodySmall:
+          TextStyle(fontSize: 14, color: Color.fromARGB(255, 126, 132, 141)),
+      labelMedium: TextStyle(fontSize: 16, color: Colors.white),
+    ),
     iconTheme: const IconThemeData(
       color: Color(0xFF8B8B94),
     ),
@@ -26,6 +30,15 @@ class AppTheme {
       secondary: Color.fromARGB(255, 0, 102, 255),
       tertiary: Colors.green,
       onPrimary: Colors.white,
+    ),
+    textTheme: const TextTheme(
+      headlineLarge: TextStyle(fontSize: 35, color: Colors.black),
+      headlineMedium: TextStyle(fontSize: 18, color: Colors.black),
+      bodyMedium: TextStyle(fontSize: 16, color: Colors.black),
+      bodyLarge: TextStyle(
+          fontSize: 26, color: Colors.black, fontWeight: FontWeight.w600),
+      bodySmall: TextStyle(fontSize: 14, color: Colors.black),
+      labelMedium: TextStyle(fontSize: 16, color: Colors.white),
     ),
     iconTheme: const IconThemeData(
       color: Color.fromARGB(255, 0, 0, 0),

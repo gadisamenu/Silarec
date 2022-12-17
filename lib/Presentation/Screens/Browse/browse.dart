@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:silarec/Presentation/_shared/Widgets/button_navigator_bar.dart';
+import 'package:silarec/Presentation/_shared/Widgets/buttom_navigator_bar.dart';
 
 class Browse extends StatelessWidget {
   Widget build(BuildContext context) {
