@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:silarec/Application/Start/start_bloc.dart';
 import 'package:silarec/Application/Theme/theme_bloc.dart';
-import 'package:silarec/Presentation/_shared/Widgets/components.dart';
 import 'Presentation/_shared/theme.dart';
 import 'Presentation/_shared/router.dart';
 
-Future<void> main() async {
+void main() {
   runApp(const MyApp());
 }
 

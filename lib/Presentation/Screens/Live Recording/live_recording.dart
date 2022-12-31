@@ -6,4 +6,6 @@ class LiveRecording extends StatelessWidget {
       child: Center(child: const Text("Live Recording")),
     );
   }
+
+  String get_title() => "Live Recording";
 }

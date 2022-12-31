@@ -10,12 +10,14 @@ class AppNavigator extends StatefulWidget {
 }
 
 class _AppNavigator extends State<AppNavigator> {
-  List bodys = <Widget>[Videos(), Browse(), LiveRecording(), Settings()];
+  static List bodys = <Widget>[Videos(), Browse(), LiveRecording(), Settings()];
 
   int _current_index = 0;
+  String _title = bodys[0].get_title() ?? "Silarec";
 
   void _onItemTapped(int index) {
     setState(() {
+      _title = bodys[index].get_title() ?? "Silarec";
       _current_index = index;
     });
   }
@@ -23,6 +25,17 @@ class _AppNavigator extends State<AppNavigator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      appBar: AppBar(
+        title: Text(
+          _title,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+        centerTitle: true,
+        elevation: 0,
+        toolbarOpacity: 0.0,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+      ),
       body: bodys[_current_index],
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,

@@ -3,34 +3,99 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../Application/Theme/theme_bloc.dart';
 
+_dark_mode_on_tap(ThemeBloc themeBloc) {
+  if (themeBloc.state.theme_mode != ThemeMode.dark) {
+    themeBloc.add(DarkMode());
+  } else {
+    themeBloc.add(LightMode());
+  }
+}
+
+_system_mode_on_tap(ThemeBloc themeBloc) {
+  // print(themeBloc.state.theme_mode.toString());
+  if (themeBloc.state.theme_mode != ThemeMode.system) {
+    themeBloc.add(SystemMode());
+  } else {
+    themeBloc.add(LightMode());
+  }
+}
+
+get_list_tile_decor(BuildContext context) => BoxDecoration(
+      borderRadius: BorderRadius.circular(15),
+      color: Theme.of(context).colorScheme.onPrimary,
+    );
+
+Icon get_toggle_icon(BuildContext context, ThemeBloc themeBloc,
+    {required ThemeMode true_case}) {
+  return themeBloc.state.theme_mode == true_case
+      ? Icon(
+          Icons.toggle_on,
+          color: Colors.blue[700],
+        )
+      : const Icon(Icons.toggle_off);
+}
+
+const tile_margin = EdgeInsets.fromLTRB(20, 5, 20, 5);
+
 class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeBloc = BlocProvider.of<ThemeBloc>(context);
     return Container(
       child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 15),
           children: [
-            Text(
-              "Dark Mode",
-              style: Theme.of(context).textTheme.bodyMedium,
+            Container(
+              margin: tile_margin,
+              decoration: get_list_tile_decor(context),
+              child: ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 40),
+                title: const Text("Use device Theme"),
+                trailing: GestureDetector(
+                  onTap: () => _system_mode_on_tap(themeBloc),
+                  child: get_toggle_icon(context, themeBloc,
+                      true_case: ThemeMode.system),
+                ),
+              ),
             ),
-            GestureDetector(
-              child: themeBloc.state.theme_mode == ThemeMode.dark
-                  ? const Icon(Icons.toggle_on)
-                  : const Icon(Icons.toggle_off),
-              onTap: () {
-                if (themeBloc.state.theme_mode == ThemeMode.dark) {
-                  themeBloc.add(LightMode());
-                } else {
-                  themeBloc.add(DarkMode());
-                }
-              },
-            )
+            Container(
+              margin: tile_margin,
+              decoration: get_list_tile_decor(context),
+              child: ListTile(
+                title: const Text("Dark Mode"),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 40),
+                trailing: GestureDetector(
+                  onTap: themeBloc.state.theme_mode == ThemeMode.system
+                      ? null
+                      : () => _dark_mode_on_tap(themeBloc),
+                  child: get_toggle_icon(context, themeBloc,
+                      true_case: ThemeMode.dark),
+                ),
+              ),
+            ),
+            Container(
+              margin: tile_margin,
+              decoration: get_list_tile_decor(context),
+              child: ListTile(
+                title: const Text("Auto rescan"),
+                subtitle: Text(
+                  "Automatically scan for new videos at startup",
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 40),
+                trailing: GestureDetector(
+                  onTap: () => {},
+                  child: get_toggle_icon(context, themeBloc,
+                      true_case: ThemeMode.light),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+
+  String get_title() => "Settings";
 }

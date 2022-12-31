@@ -6,4 +6,6 @@ class Videos extends StatelessWidget {
       child: Center(child: const Text("Videos")),
     );
   }
+
+  String get_title() => "Video";
 }
