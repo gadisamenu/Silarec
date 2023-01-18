@@ -41,6 +41,8 @@ dependencies:
   bloc: ^8.0.2
   shared_preferences: ^2.0.15
   file_manager: ^1.0.0
+  # storage_info: ^0.0.1
+  path_provider_extention: ^1.0.1
 
 
 dev_dependencies:

@@ -29,7 +29,7 @@ class _AppNavigator extends State<AppNavigator> {
       appBar: AppBar(
         title: Text(
           _title,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
         centerTitle: true,
         elevation: 0,

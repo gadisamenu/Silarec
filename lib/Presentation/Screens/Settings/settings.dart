@@ -35,7 +35,8 @@ Icon get_toggle_icon(BuildContext context, ThemeBloc themeBloc,
       : const Icon(Icons.toggle_off);
 }
 
-const tile_margin = EdgeInsets.fromLTRB(20, 5, 20, 5);
+const tile_margin = EdgeInsets.symmetric(vertical: 5, horizontal: 10);
+const content_padding = EdgeInsets.symmetric(horizontal: 30);
 
 class Settings extends StatelessWidget {
   @override
@@ -50,7 +51,7 @@ class Settings extends StatelessWidget {
               margin: tile_margin,
               decoration: get_list_tile_decor(context),
               child: ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 40),
+                contentPadding: content_padding,
                 title: const Text("Use device Theme"),
                 trailing: GestureDetector(
                   onTap: () => _system_mode_on_tap(themeBloc),
@@ -64,7 +65,7 @@ class Settings extends StatelessWidget {
               decoration: get_list_tile_decor(context),
               child: ListTile(
                 title: const Text("Dark Mode"),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 40),
+                contentPadding: content_padding,
                 trailing: GestureDetector(
                   onTap: themeBloc.state.theme_mode == ThemeMode.system
                       ? null
@@ -83,7 +84,7 @@ class Settings extends StatelessWidget {
                   "Automatically scan for new videos at startup",
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 40),
+                contentPadding: content_padding,
                 trailing: GestureDetector(
                   onTap: () => {},
                   child: get_toggle_icon(context, themeBloc,
