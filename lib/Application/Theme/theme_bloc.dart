@@ -11,15 +11,15 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     on<LightMode>(_light_mode);
   }
 
-  void _system_mode(ThemeEvent SystemMode, Emitter emit) {
+  void _system_mode(ThemeEvent event, Emitter emit) {
     emit(ThemeState(theme_mode: ThemeMode.system));
   }
 
-  void _dark_mode(ThemeEvent SystemMode, Emitter emit) {
+  void _dark_mode(ThemeEvent event, Emitter emit) {
     emit(ThemeState(theme_mode: ThemeMode.dark));
   }
 
-  void _light_mode(ThemeEvent SystemMode, Emitter emit) {
+  void _light_mode(ThemeEvent event, Emitter emit) {
     emit(ThemeState(theme_mode: ThemeMode.light));
   }
 }

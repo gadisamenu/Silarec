@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silarec/Application/Start/start_bloc.dart';
 import 'package:silarec/Application/Theme/theme_bloc.dart';
-import 'package:silarec/Presentation/Screens/Videos/samplePlayer.dart';
 import 'Presentation/_shared/theme.dart';
 import 'Presentation/_shared/router.dart';
 
-
-Future<void> main() async {
-  // runApp(const SilarecApp());
-  runApp(const SamplePlayer(url:'assets/videos/file_example.webm'));
+void main() {
+  runApp(const SilarecApp());
 }
 
 class SilarecApp extends StatelessWidget {
