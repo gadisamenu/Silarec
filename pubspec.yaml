@@ -46,6 +46,9 @@ dependencies:
 
   chewie:
   video_player:
+  screenshot:
+  widgets_to_image:
+  # tflite:
 
 
 dev_dependencies:
