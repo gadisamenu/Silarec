@@ -1,35 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:silarec/Presentation/Screens/Browse/browse.dart';
 import 'package:silarec/Presentation/Screens/Live%20Recording/live_recording.dart';
 import 'package:silarec/Presentation/Screens/Settings/settings.dart';
 import 'package:silarec/Presentation/Screens/Videos/videos.dart';
 
 class AppNavigator extends StatefulWidget {
-  final storagePermission;
-  AppNavigator({required this.storagePermission});
-
   @override
-  State<AppNavigator> createState() =>
-      _AppNavigator(storagePermission: storagePermission);
+  State<AppNavigator> createState() => _AppNavigator();
 }
 
 class _AppNavigator extends State<AppNavigator> {
-  final PermissionStatus storagePermission;
-  _AppNavigator({required this.storagePermission});
-  static List? _bodys;
+  static final List _bodys = <Widget>[
+    Videos(),
+    Browse(),
+    LiveRecording(),
+    Settings()
+  ];
 
-  @override
-  void initState() {
-    super.initState();
-    _bodys = <Widget>[
-      Videos(),
-      Browse(storagePermission: storagePermission),
-      LiveRecording(),
-      Settings()
-    ];
-  }
-
+  // ignore: non_constant_identifier_names
   int _current_index = 0;
 
   void _onItemTapped(int index) {
@@ -44,7 +32,7 @@ class _AppNavigator extends State<AppNavigator> {
       backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
         title: Text(
-          _bodys![_current_index].get_title() ?? "Silarec",
+          _bodys[_current_index].get_title() ?? "Silarec",
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         centerTitle: true,
@@ -52,7 +40,7 @@ class _AppNavigator extends State<AppNavigator> {
         toolbarOpacity: 0.0,
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
-      body: _bodys![_current_index],
+      body: _bodys[_current_index],
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,
         backgroundColor: Theme.of(context).colorScheme.onPrimary,

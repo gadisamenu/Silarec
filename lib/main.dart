@@ -9,19 +9,27 @@ import 'Presentation/_shared/theme.dart';
 import 'Presentation/_shared/router.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final PermissionStatus storagePermission = await Permission.storage.status;
   final SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp(
-      sharedPreferences: sharedPreferences, stPermission: storagePermission));
+
+  runApp(
+    MyApp(
+      sharedPreferences: sharedPreferences,
+      stPermission: storagePermission,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   final PermissionStatus stPermission;
   final SharedPreferences sharedPreferences;
-  const MyApp(
-      {required this.sharedPreferences, required this.stPermission, super.key});
+  const MyApp({
+    required this.sharedPreferences,
+    required this.stPermission,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -16,7 +16,7 @@ class AppRouter {
       GoRoute(
           path: "/navigator",
           builder: (BuildContext context, GoRouterState state) =>
-              AppNavigator(storagePermission: state.extra)),
+              AppNavigator()),
       GoRoute(
         path: "/introduction1",
         builder: (BuildContext context, GoRouterState state) => Introduction1(),
