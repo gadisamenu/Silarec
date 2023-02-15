@@ -5,3 +5,5 @@ abstract class StPermissionEvent {}
 class GetPermission extends StPermissionEvent {}
 
 class OpenSetting extends StPermissionEvent {}
+
+class OpenFile extends StPermissionEvent {}

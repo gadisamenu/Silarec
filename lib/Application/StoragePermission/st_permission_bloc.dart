@@ -11,18 +11,27 @@ class StPermissionBloc extends Bloc<StPermissionEvent, StPermissionState> {
       : super(stPermission.isGranted ? Granted() : Deined()) {
     on<GetPermission>(_get_permission);
     on<OpenSetting>(_open_setting);
+    on<OpenFile>(_open_file);
   }
 
   // ignore: non_constant_identifier_names
-  void _get_permission(StPermissionEvent state, Emitter emit) async {
+  void _get_permission(StPermissionEvent event, Emitter emit) async {
     emit(Deined);
   }
 
-  void _open_setting(StPermissionEvent state, Emitter emit) async {
+  void _open_file(StPermissionEvent event, Emitter emit) {
+    if (stPermission.isGranted) {
+      emit(Granted);
+    } else {
+      emit(Deined);
+    }
+  }
+
+  void _open_setting(StPermissionEvent event, Emitter emit) async {
     if (stPermission.isPermanentlyDenied) {
       emit(PermanentlyDenied);
       return;
     }
-    emit(Deined);
+    emit(OpenSetting);
   }
 }
