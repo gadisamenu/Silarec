@@ -12,8 +12,7 @@ _dark_mode_on_tap(ThemeBloc themeBloc) {
 }
 
 _system_mode_on_tap(ThemeBloc themeBloc) {
-  // print(themeBloc.state.theme_mode.toString());
-  if (themeBloc.state.theme_mode != ThemeMode.system) {
+  if (themeBloc.state.theme_mode == ThemeMode.system) {
     themeBloc.add(SystemMode());
   } else {
     themeBloc.add(LightMode());

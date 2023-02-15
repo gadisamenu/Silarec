@@ -43,9 +43,11 @@ dependencies:
   file_manager: ^1.0.0
   # storage_info: ^0.0.1
   path_provider_extention: ^1.0.1
+  permission_handler: ^10.2.0
+  video_player: ^2.5.1
+  # camera:
 
   chewie:
-  video_player:
   screenshot:
   widgets_to_image:
   # tflite:

@@ -6,4 +6,4 @@ class Loading extends StartState {}
 
 class Loaded extends StartState {}
 
-class FirstTime extends StartState {}
+class Introduction extends StartState {}
