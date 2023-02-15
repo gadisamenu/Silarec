@@ -45,6 +45,7 @@ dependencies:
   path_provider_extention: ^1.0.1
   permission_handler: ^10.2.0
   video_player: ^2.5.1
+  camera: ^0.10.3
   # camera:
 
 
