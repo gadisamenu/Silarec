@@ -44,11 +44,14 @@ dependencies:
   # storage_info: ^0.0.1
   path_provider_extention: ^1.0.1
 
-  chewie:
   video_player:
-  screenshot:
-  widgets_to_image:
-  # tflite:
+  flutter_vlc_player:
+  tflite_flutter:
+  tflite_flutter_helper:
+  equatable:
+  flutter_mediapipe:
+  image:
+  camera: ^0.10.3
 
 
 dev_dependencies:
