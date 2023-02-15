@@ -6,10 +6,9 @@ class Videos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-    return const SamplePlayer(url: 'assets/videos/file_example.webm');
+    return ExampleVideo(url: 'assets/videos/file_example.webm');
+    // return PrimaryScreen();
   }
 
   String get_title() => "Video";
 }
-
