@@ -21,7 +21,7 @@ abstract class Classifier {
 
   final String _labelsFileName = 'assets/labels.txt';
 
-  final int _labelsLength = 1001;
+  final int _labelsLength = 14;
 
   late var _probabilityProcessor;
 
@@ -82,7 +82,7 @@ abstract class Classifier {
         .process(_inputImage);
   }
 
-  Category predict(Image image) {
+  Category predict(img.Image image) {
     final pres = DateTime.now().millisecondsSinceEpoch;
     _inputImage = TensorImage(_inputType);
     _inputImage.loadImage(image);
