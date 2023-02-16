@@ -19,11 +19,15 @@ class AppRouter {
               AppNavigator()),
       GoRoute(
         path: "/introduction1",
-        builder: (BuildContext context, GoRouterState state) => Introduction1(),
+        builder: (BuildContext context, GoRouterState state) => const Introduction1(),
       ),
       GoRoute(
         path: "/introduction2",
-        builder: (BuildContext context, GoRouterState state) => Introduction2(),
+        builder: (BuildContext context, GoRouterState state) => const Introduction2(),
+      ),
+      GoRoute(
+        path: "/video_player",
+        builder: (BuildContext context, GoRouterState state) => const Introduction2(),
       )
     ],
   );
