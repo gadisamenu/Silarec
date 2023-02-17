@@ -20,11 +20,7 @@ class StPermissionBloc extends Bloc<StPermissionEvent, StPermissionState> {
   }
 
   void _open_file(StPermissionEvent event, Emitter emit) {
-    if (stPermission.isGranted) {
-      emit(Granted);
-    } else {
-      emit(Deined);
-    }
+    emit(Granted);
   }
 
   void _open_setting(StPermissionEvent event, Emitter emit) async {

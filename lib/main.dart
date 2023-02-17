@@ -1,6 +1,7 @@
 // import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:silarec/Application/Start/start_bloc.dart';
@@ -8,9 +9,14 @@ import 'package:silarec/Application/StoragePermission/st_permission_bloc.dart';
 import 'package:silarec/Application/Theme/theme_bloc.dart';
 import 'Presentation/_shared/theme.dart';
 import 'Presentation/_shared/router.dart';
+// import 'Services/constants/models.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // final model = await Tflite.loadModel(
+  //   model: ModelFile.singleFrame,
+  //   labels: 'assets/labels.txt',
+  // );
   final PermissionStatus storagePermission = await Permission.storage.status;
   final SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();

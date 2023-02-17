@@ -55,6 +55,8 @@ dependencies:
   image:
   camera: ^0.10.3
   flutter_tflite: ^1.0.1
+  ffi: ^1.2.1
+  # camerawesome: ^1.2.1
 
 
 dev_dependencies:
@@ -84,6 +86,8 @@ flutter:
   assets:
     - assets/images/
     - assets/videos/
+    - assets/models/
+    - assets/
     # - images/a_dot_burr.jpeg
     # - images/a_dot_ham.jpeg
     

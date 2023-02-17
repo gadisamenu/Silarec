@@ -55,8 +55,9 @@ abstract class Classifier {
       _outputType = interpreter.getOutputTensor(0).type;
 
       _outputBuffer = TensorBuffer.createFixedSize(_outputShape, _outputType);
-      _probabilityProcessor =
-          TensorProcessorBuilder().add(postProcessNormalizeOp).build();
+      _probabilityProcessor = TensorProcessorBuilder()
+          // .add(postProcessNormalizeOp)
+          .build();
     } catch (e) {
       print('Unable to create interpreter, Caught Exception: ${e.toString()}');
     }
@@ -74,7 +75,7 @@ abstract class Classifier {
   TensorImage _preProcess() {
     int cropSize = min(_inputImage.height, _inputImage.width);
     return ImageProcessorBuilder()
-        .add(ResizeWithCropOrPadOp(cropSize, cropSize))
+        // .add(ResizeWithCropOrPadOp(cropSize, cropSize))
         .add(ResizeOp(
             _inputShape[1], _inputShape[2], ResizeMethod.NEAREST_NEIGHBOUR))
         .add(preProcessNormalizeOp)
@@ -83,24 +84,30 @@ abstract class Classifier {
   }
 
   Category predict(img.Image image) {
-    final pres = DateTime.now().millisecondsSinceEpoch;
+    // final pres = DateTime.now().millisecondsSinceEpoch;
     _inputImage = TensorImage(_inputType);
     _inputImage.loadImage(image);
 
     _inputImage = _preProcess();
-    final pre = DateTime.now().millisecondsSinceEpoch - pres;
+    // final pre = DateTime.now().millisecondsSinceEpoch - pres;
 
-    print('Time to load image: $pre ms');
+    // print('Time to load image: $pre ms');
 
-    final runs = DateTime.now().millisecondsSinceEpoch;
+    // final runs = DateTime.now().millisecondsSinceEpoch;
     interpreter.run(_inputImage.buffer, _outputBuffer.getBuffer());
-    final run = DateTime.now().millisecondsSinceEpoch - runs;
+    // final run = DateTime.now().millisecondsSinceEpoch - runs;
 
-    print('Time to run inference: $run ms');
+    // print('Time to run inference: $run ms');
 
     Map<String, double> labeledProb = TensorLabel.fromList(
             labels, _probabilityProcessor.process(_outputBuffer))
         .getMapWithFloatValue();
+
+    // print(
+    //     '******************************************************************************');
+    // print(labeledProb);
+    // print(
+    //     '******************************************************************************');
     final pred = getTopProbability(labeledProb);
 
     return Category(pred.key, pred.value);

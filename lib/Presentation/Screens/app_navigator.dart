@@ -10,12 +10,7 @@ class AppNavigator extends StatefulWidget {
 }
 
 class _AppNavigator extends State<AppNavigator> {
-  static final List _bodys = <Widget>[
-    Videos(),
-    Browse(),
-    LiveRecording(),
-    Settings()
-  ];
+  static final List _bodys = <Widget>[LiveRecording(), Browse(), Settings()];
 
   // ignore: non_constant_identifier_names
   int _current_index = 0;
@@ -51,16 +46,12 @@ class _AppNavigator extends State<AppNavigator> {
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.video_collection_outlined),
-            label: "Videos",
+            icon: Icon(Icons.camera),
+            label: "Live Recording",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.folder),
             label: "Browse",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera),
-            label: "Live Recording",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),

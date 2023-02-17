@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:silarec/Application/StoragePermission/st_permission_bloc.dart';
+import 'package:silarec/Presentation/Screens/Videos/samplePlayer.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../Provider/common_provider.dart';
@@ -18,7 +19,7 @@ class Browse extends StatelessWidget {
     final stPermissionBloc = BlocProvider.of<StPermissionBloc>(context);
     return BlocBuilder<StPermissionBloc, StPermissionState>(
       builder: (context, state) {
-        if (state is Granted) {
+        if (stPermissionBloc.stPermission.isGranted) {
           var deviceWidth = MediaQuery.of(context).size.width;
           var storageIconSize = deviceWidth / 3;
           return ControlBackButton(
@@ -27,7 +28,7 @@ class Browse extends StatelessWidget {
               controller: controller,
               builder: (context, snapshot) {
                 final List<FileSystemEntity> entities = snapshot;
-                print(entities.length);
+
                 return ListView.builder(
                   itemCount: entities.length,
                   itemBuilder: (context, index) {
@@ -40,12 +41,9 @@ class Browse extends StatelessWidget {
                         subtitle: subtitle(entity),
                         onTap: () async {
                           if (FileManager.isDirectory(entity)) {
-                            // open the folder
                             controller.openDirectory(entity);
                           } else {
-                            // if (isVideo(entity)) {
-                            //   open_video(entity, context);
-                            // }
+                            context.go("/video_player", extra: entity);
                           }
                         },
                       ),
@@ -60,31 +58,35 @@ class Browse extends StatelessWidget {
             child: SizedBox(
               height: 200,
               child: Dialog(
-                  insetAnimationDuration: Duration(seconds: 5),
-                  alignment: Alignment.center,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text("Permission Denied"),
-                      ElevatedButton(
-                        child: const ListTile(
-                            title: Text("Give Permission"),
-                            leading: const Icon(Icons.settings)),
-                        onPressed: () async {
-                          await Permission.storage.request();
-                          stPermissionBloc.add(OpenFile());
-                        },
-                      ),
-                      ElevatedButton(
-                        child: const ListTile(
-                            title: Text("Exit"),
-                            leading: const Icon(Icons.cancel)),
-                        onPressed: () => {
-                          context.go("/navigator"),
-                        },
-                      ),
-                    ],
-                  )),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Permission Denied"),
+                  ElevatedButton(
+                    child: const ListTile(
+                        title: Text("Give Permission"),
+                        leading: Icon(Icons.settings)),
+                    onPressed: () async {
+                      await Permission.storage.request();
+                      if (stPermissionBloc.stPermission.isGranted) {
+                        stPermissionBloc.add(OpenFile());
+                      } else {
+                        context.go("/");
+                      }
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  ElevatedButton(
+                    child: const ListTile(
+                        title: Text("Exit"), leading: Icon(Icons.cancel)),
+                    onPressed: () => {
+                      context.go("/"),
+                    },
+                  ),
+                ],
+              )),
             ),
           );
         }
@@ -98,11 +100,6 @@ class Browse extends StatelessWidget {
 open_video(FileSystemEntity entity, BuildContext context) {
   late VideoPlayerController _controller =
       VideoPlayerController.contentUri(entity.uri);
-  //     ..initialize().then((_) {
-  //       // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-  //       setState(() {});
-  //     });
-  // }
 
   showDialog(
       context: context,
